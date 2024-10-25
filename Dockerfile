@@ -35,7 +35,7 @@ RUN bash scripts/download_pdfjs.sh $PDFJS_PREBUILT_DIR
 
 # Copy contents
 COPY . /app
-COPY .env.example /app/.env
+COPY .env /app/.env
 
 # Install pip packages
 RUN --mount=type=ssh  \
@@ -53,6 +53,9 @@ RUN apt-get autoremove \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && rm -rf ~/.cache
+
+RUN pip install graphrag==0.3.6
+RUN pip install future==1.0.0
 
 CMD ["python", "app.py"]
 
@@ -89,5 +92,8 @@ RUN apt-get autoremove \
 
 # Download nltk packages as required for unstructured
 RUN python -c "from unstructured.nlp.tokenize import _download_nltk_packages_if_not_present; _download_nltk_packages_if_not_present()"
+
+RUN pip install graphrag==0.3.6
+RUN pip install future==1.0.0
 
 CMD ["python", "app.py"]

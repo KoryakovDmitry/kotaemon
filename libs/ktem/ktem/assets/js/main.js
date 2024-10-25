@@ -34,4 +34,65 @@ function run() {
   globalThis.removeFromStorage = (key) => {
       localStorage.removeItem(key)
   }
+  // Function to load and render SVG into the specified container from a URL
+  function loadSVGFromURL(url, containerId) {
+    fetch(url)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.text();
+      })
+      .then(svgData => {
+        document.getElementById(containerId).innerHTML = svgData;
+      })
+      .catch(error => console.error('Error loading SVG:', error));
+  }
+
+  // Create and append the CSS for the layout
+  const style = document.createElement('style');
+  style.textContent = `
+    #logos-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px; /* Space between the logos */
+      width: 100%; /* Ensure it takes full width */
+    }
+
+    #img-1-container,
+    #img-2-container {
+      height: 85px; /* Set height for consistency */
+      display: flex;
+      align-items: center;
+    }
+
+    svg {
+      height: 100%;
+      width: auto;
+    }
+  `;
+  document.head.appendChild(style);
+
+  // Create container for logos
+  const logos = document.createElement("div");
+  logos.id = "logos-container";
+
+  // Create divs for individual logos
+  const optiNode = document.createElement("div");
+  const moniNode = document.createElement("div");
+  optiNode.id = "img-1-container";
+  moniNode.id = "img-2-container";
+
+  // Append logo containers to logos div
+  logos.appendChild(optiNode);
+  logos.appendChild(moniNode);
+
+  main_parent.appendChild(logos);
+
+  // Call the function to load SVGs
+  const svgURLOpti = "https://raw.githubusercontent.com/KoryakovDmitry/kotaemon/refs/heads/main/libs/ktem/ktem/assets/img/opti-e-full.svg";
+  const svgURLMoni = "https://raw.githubusercontent.com/KoryakovDmitry/kotaemon/refs/heads/main/libs/ktem/ktem/assets/img/moniflo-full.svg";
+  loadSVGFromURL(svgURLOpti, optiNode.id);
+  loadSVGFromURL(svgURLMoni, moniNode.id);
 }
