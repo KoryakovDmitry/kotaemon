@@ -58,9 +58,6 @@ function run() {
       align-items: center;
       gap: 20px; /* Space between the logos */
       width: 100%; /* Ensure it takes full width */
-      position: relative; /* Relative to allow normal flow */
-      background-color: #000; /* Background color to match site theme */
-      padding: 10px 0; /* Padding for aesthetics */
     }
 
     #img-1-container,
@@ -91,8 +88,7 @@ function run() {
   logos.appendChild(optiNode);
   logos.appendChild(moniNode);
 
-  // Insert the logos container at the beginning of the main parent
-  main_parent.insertBefore(logos, main_parent.firstChild);
+  main_parent.appendChild(logos);
 
   // Call the function to load SVGs
   const svgURLOpti = "https://raw.githubusercontent.com/KoryakovDmitry/kotaemon/refs/heads/main/libs/ktem/ktem/assets/img/opti-e-full.svg";
