@@ -1,0 +1,14 @@
+FROM .
+
+
+TEMPLATE """{{ if and .First .System }}<|im_start|>system
+{{ .System }}<|im_end|>
+{{ end }}<|im_start|>user
+{{ .Prompt }}<|im_end|>
+<|im_start|>assistant
+{{ .Response }}"""
+
+PARAMETER stop "<|im_start|>"
+PARAMETER stop "<|im_end|>"
+PARAMETER stop "</|im_end|>"
+PARAMETER stop "</|im_start|>"
