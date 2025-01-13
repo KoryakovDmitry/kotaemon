@@ -16,13 +16,13 @@ services:
     tty: true
     entrypoint: ["/bin/sh", "/models/run_ollama.sh"] # Loading the finetuned Mistral with the GGUF file
     runtime: nvidia
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: 1
-              capabilities: [ gpu ]
+#    deploy:
+#      resources:
+#        reservations:
+#          devices:
+#            - driver: nvidia
+#              count: 1
+#              capabilities: [ gpu ]
   web-rag:
     restart: always
     build:
