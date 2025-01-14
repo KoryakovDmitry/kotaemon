@@ -52,80 +52,81 @@ class SetupPage(BasePage):
 
     def __init__(self, app):
         self._app = app
-    #     self.on_building_ui()
-    #
-    # def on_building_ui(self):
-    #     gr.Markdown(f"# Welcome to {self._app.app_name} first setup!")
-    #     self.radio_model = gr.Radio(
-    #         [
-    #             ("Cohere API (*free registration*) - recommended", "cohere"),
-    #             ("Google API (*free registration*)", "google"),
-    #             ("OpenAI API (for GPT-based models)", "openai"),
-    #             ("Local LLM (for completely *private RAG*)", "ollama"),
-    #         ],
-    #         label="Select your model provider",
-    #         value="cohere",
-    #         info=(
-    #             "Note: You can change this later. "
-    #             "If you are not sure, go with the first option "
-    #             "which fits most normal users."
-    #         ),
-    #         interactive=True,
-    #     )
-    #
-    #     with gr.Column(visible=False) as self.openai_option:
-    #         gr.Markdown(
-    #             (
-    #                 "#### OpenAI API Key\n\n"
-    #                 "(create at https://platform.openai.com/api-keys)"
-    #             )
-    #         )
-    #         self.openai_api_key = gr.Textbox(
-    #             show_label=False, placeholder="OpenAI API Key"
-    #         )
-    #
-    #     with gr.Column(visible=True) as self.cohere_option:
-    #         gr.Markdown(
-    #             (
-    #                 "#### Cohere API Key\n\n"
-    #                 "(register your free API key "
-    #                 "at https://dashboard.cohere.com/api-keys)"
-    #             )
-    #         )
-    #         self.cohere_api_key = gr.Textbox(
-    #             show_label=False, placeholder="Cohere API Key"
-    #         )
-    #
-    #     with gr.Column(visible=False) as self.google_option:
-    #         gr.Markdown(
-    #             (
-    #                 "#### Google API Key\n\n"
-    #                 "(register your free API key "
-    #                 "at https://aistudio.google.com/app/apikey)"
-    #             )
-    #         )
-    #         self.google_api_key = gr.Textbox(
-    #             show_label=False, placeholder="Google API Key"
-    #         )
-    #
-    #     with gr.Column(visible=False) as self.ollama_option:
-    #         gr.Markdown(
-    #             (
-    #                 "#### Setup Ollama\n\n"
-    #                 "Download and install Ollama from "
-    #                 "https://ollama.com/"
-    #             )
-    #         )
-    #
-    #     self.setup_log = gr.HTML(
-    #         show_label=False,
-    #     )
-    #
-    #     with gr.Row():
-    #         self.btn_finish = gr.Button("Proceed", variant="primary")
-    #         self.btn_skip = gr.Button(
-    #             "I am an advance user. Skip this.", variant="stop"
-    #         )
+        self.on_building_ui()
+
+    def on_building_ui(self):
+        gr.Markdown(f"# Welcome to {self._app.app_name} first setup!", visible=False)
+        self.radio_model = gr.Radio(
+            [
+                ("Cohere API (*free registration*) - recommended", "cohere"),
+                ("Google API (*free registration*)", "google"),
+                ("OpenAI API (for GPT-based models)", "openai"),
+                ("Local LLM (for completely *private RAG*)", "ollama"),
+            ],
+            label="Select your model provider",
+            value="cohere",
+            info=(
+                "Note: You can change this later. "
+                "If you are not sure, go with the first option "
+                "which fits most normal users."
+            ),
+            interactive=True,
+            visible=False
+        )
+
+        with gr.Column(visible=False) as self.openai_option:
+            gr.Markdown(
+                (
+                    "#### OpenAI API Key\n\n"
+                    "(create at https://platform.openai.com/api-keys)"
+                ), visible=False
+            )
+            self.openai_api_key = gr.Textbox(
+                show_label=False, placeholder="OpenAI API Key"
+            )
+
+        with gr.Column(visible=False) as self.cohere_option:
+            gr.Markdown(
+                (
+                    "#### Cohere API Key\n\n"
+                    "(register your free API key "
+                    "at https://dashboard.cohere.com/api-keys)"
+                ), visible=False
+            )
+            self.cohere_api_key = gr.Textbox(
+                show_label=False, placeholder="Cohere API Key"
+            )
+
+        with gr.Column(visible=False) as self.google_option:
+            gr.Markdown(
+                (
+                    "#### Google API Key\n\n"
+                    "(register your free API key "
+                    "at https://aistudio.google.com/app/apikey)"
+                ), visible=False
+            )
+            self.google_api_key = gr.Textbox(
+                show_label=False, placeholder="Google API Key", visible=False
+            )
+
+        with gr.Column(visible=False) as self.ollama_option:
+            gr.Markdown(
+                (
+                    "#### Setup Ollama\n\n"
+                    "Download and install Ollama from "
+                    "https://ollama.com/"
+                ), visible=False
+            )
+
+        self.setup_log = gr.HTML(
+            show_label=False, visible=False
+        )
+
+        with gr.Row(visible=False):
+            self.btn_finish = gr.Button("Proceed", variant="primary")
+            self.btn_skip = gr.Button(
+                "I am an advance user. Skip this.", variant="stop"
+            )
 
     def on_register_events(self):
         onFirstSetupComplete = gr.on(
