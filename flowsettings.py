@@ -172,7 +172,7 @@ if config("LOCAL_MODEL", default=""):
             "model": config("LOCAL_MODEL", default="llama3.1:8b"),
             "api_key": "ollama",
         },
-        "default": False,
+        "default": True,
     }
     KH_EMBEDDINGS["ollama"] = {
         "spec": {
@@ -181,7 +181,7 @@ if config("LOCAL_MODEL", default=""):
             "model": config("LOCAL_MODEL_EMBEDDINGS", default="nomic-embed-text"),
             "api_key": "ollama",
         },
-        "default": False,
+        "default": True,
     }
 
     # KH_EMBEDDINGS["fast_embed"] = {
