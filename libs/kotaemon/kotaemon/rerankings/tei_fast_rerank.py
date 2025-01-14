@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 from typing import Optional
 
 import requests
@@ -17,10 +18,10 @@ class TeiFastReranking(BaseReranking):
     """
 
     endpoint_url: str = Param(
-        None, help="TEI Reranking service api base URL", required=True
+        os.getenv("TEI_RERANKING", "http://localhost:8111"), help="TEI Reranking service api base URL", required=True
     )
     model_name: Optional[str] = Param(
-        None,
+        "BAAI/bge-reranker-v2-m3",
         help=(
             "ID of the model to use. You can go to [Supported Models]"
             "(https://github.com/huggingface"

@@ -52,9 +52,11 @@ class RerankingManager:
                     self._default = item.name
 
     def load_vendors(self):
-        from kotaemon.rerankings import CohereReranking, TeiFastReranking
+        # from kotaemon.rerankings import CohereReranking, TeiFastReranking
+        from kotaemon.rerankings import TeiFastReranking
 
-        self._vendors = [TeiFastReranking, CohereReranking]
+        self._vendors = [TeiFastReranking]
+        # self._vendors = []
 
     def __getitem__(self, key: str) -> BaseReranking:
         """Get model by name"""

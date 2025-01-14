@@ -37,11 +37,11 @@ from kotaemon.embeddings import BaseEmbeddings
 from kotaemon.indices import VectorIndexing, VectorRetrieval
 from kotaemon.indices.ingests.files import (
     KH_DEFAULT_FILE_EXTRACTORS,
-    adobe_reader,
-    azure_reader,
-    docling_reader,
+    # adobe_reader,
+    # azure_reader,
+    # docling_reader,
     unstructured,
-    web_reader,
+    # web_reader,
 )
 from kotaemon.indices.rankings import BaseReranking, LLMReranking, LLMTrulensScoring
 from kotaemon.indices.splitters import BaseSplitter, TokenSplitter
@@ -270,7 +270,7 @@ class DocumentRetrievalPipeline(BaseFileIndexRetriever):
             },
             "use_llm_reranking": {
                 "name": "Use LLM relevant scoring",
-                "value": True,
+                "value": False,
                 "choices": [True, False],
                 "component": "checkbox",
             },
@@ -673,12 +673,12 @@ class IndexDocumentPipeline(BaseFileIndexIndexing):
     def readers(self):
         readers = deepcopy(KH_DEFAULT_FILE_EXTRACTORS)
         print("reader_mode", self.reader_mode)
-        if self.reader_mode == "adobe":
-            readers[".pdf"] = adobe_reader
-        elif self.reader_mode == "azure-di":
-            readers[".pdf"] = azure_reader
-        elif self.reader_mode == "docling":
-            readers[".pdf"] = docling_reader
+        # if self.reader_mode == "adobe":
+        #     readers[".pdf"] = adobe_reader
+        # elif self.reader_mode == "azure-di":
+        #     readers[".pdf"] = azure_reader
+        # elif self.reader_mode == "docling":
+        #     readers[".pdf"] = docling_reader
 
         dev_readers, _, _ = dev_settings()
         readers.update(dev_readers)
@@ -693,12 +693,12 @@ class IndexDocumentPipeline(BaseFileIndexIndexing):
                 "value": "default",
                 "choices": [
                     ("Default (open-source)", "default"),
-                    ("Adobe API (figure+table extraction)", "adobe"),
-                    (
-                        "Azure AI Document Intelligence (figure+table extraction)",
-                        "azure-di",
-                    ),
-                    ("Docling (figure+table extraction)", "docling"),
+                    # ("Adobe API (figure+table extraction)", "adobe"),
+                    # (
+                    #     "Azure AI Document Intelligence (figure+table extraction)",
+                    #     "azure-di",
+                    # ),
+                    # ("Docling (figure+table extraction)", "docling"),
                 ],
                 "component": "dropdown",
             },
@@ -736,17 +736,17 @@ class IndexDocumentPipeline(BaseFileIndexIndexing):
         chunk_overlap = self.chunk_overlap or dev_chunk_overlap
 
         # check if file_path is a URL
-        if self.is_url(file_path):
-            reader = web_reader
-        else:
-            assert isinstance(file_path, Path)
-            ext = file_path.suffix.lower()
-            reader = self.readers.get(ext, unstructured)
-            if reader is None:
-                raise NotImplementedError(
-                    f"No supported pipeline to index {file_path.name}. Please specify "
-                    "the suitable pipeline for this file type in the settings."
-                )
+        # if self.is_url(file_path):
+        #     reader = web_reader
+        # else:
+        assert isinstance(file_path, Path)
+        ext = file_path.suffix.lower()
+        reader = self.readers.get(ext, unstructured)
+        if reader is None:
+            raise NotImplementedError(
+                f"No supported pipeline to index {file_path.name}. Please specify "
+                "the suitable pipeline for this file type in the settings."
+            )
 
         print(f"Chunk size: {chunk_size}, chunk overlap: {chunk_overlap}")
 
@@ -792,11 +792,11 @@ class IndexDocumentPipeline(BaseFileIndexIndexing):
 
         n_files = len(file_paths)
         for idx, file_path in enumerate(file_paths):
-            if self.is_url(file_path):
-                file_name = file_path
-            else:
-                file_path = Path(file_path)
-                file_name = file_path.name
+            # if self.is_url(file_path):
+            #     file_name = file_path
+            # else:
+            file_path = Path(file_path)
+            file_name = file_path.name
 
             yield Document(
                 content=f"Indexing [{idx + 1}/{n_files}]: {file_name}",

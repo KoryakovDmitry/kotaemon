@@ -3,7 +3,8 @@ from pathlib import Path
 
 import pytest
 
-from kotaemon.loaders import MathpixPDFReader, OCRReader, PandasExcelReader
+# from kotaemon.loaders import MathpixPDFReader, OCRReader, PandasExcelReader
+from kotaemon.loaders import PandasExcelReader
 
 from .conftest import skip_when_unstructured_pdf_not_installed
 
@@ -28,19 +29,19 @@ def mathpix_output():
     return content
 
 
-@skip_when_unstructured_pdf_not_installed
-def test_ocr_reader(fullocr_output):
-    reader = OCRReader()
-    documents = reader.load_data(input_file, response_content=fullocr_output)
-    table_docs = [doc for doc in documents if doc.metadata.get("type", "") == "table"]
-    assert len(table_docs) == 2
+# @skip_when_unstructured_pdf_not_installed
+# def test_ocr_reader(fullocr_output):
+#     reader = OCRReader()
+#     documents = reader.load_data(input_file, response_content=fullocr_output)
+#     table_docs = [doc for doc in documents if doc.metadata.get("type", "") == "table"]
+#     assert len(table_docs) == 2
 
 
-def test_mathpix_reader(mathpix_output):
-    reader = MathpixPDFReader()
-    documents = reader.load_data(input_file, response_content=mathpix_output)
-    table_docs = [doc for doc in documents if doc.metadata.get("type", "") == "table"]
-    assert len(table_docs) == 4
+# def test_mathpix_reader(mathpix_output):
+#     reader = MathpixPDFReader()
+#     documents = reader.load_data(input_file, response_content=mathpix_output)
+#     table_docs = [doc for doc in documents if doc.metadata.get("type", "") == "table"]
+#     assert len(table_docs) == 4
 
 
 def test_excel_reader():

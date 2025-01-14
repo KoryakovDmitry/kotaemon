@@ -362,7 +362,8 @@ class FullQAPipeline(BaseReasoning):
         )
         answer_pipeline.enable_mindmap = settings[f"{prefix}.create_mindmap"]
         answer_pipeline.enable_citation_viz = settings[f"{prefix}.create_citation_viz"]
-        answer_pipeline.use_multimodal = settings[f"{prefix}.use_multimodal"]
+        # answer_pipeline.use_multimodal = settings[f"{prefix}.use_multimodal"]
+        answer_pipeline.use_multimodal = False
         answer_pipeline.system_prompt = settings[f"{prefix}.system_prompt"]
         answer_pipeline.qa_template = settings[f"{prefix}.qa_prompt"]
         answer_pipeline.lang = SUPPORTED_LANGUAGE_MAP.get(
@@ -426,11 +427,11 @@ class FullQAPipeline(BaseReasoning):
                 "value": False,
                 "component": "checkbox",
             },
-            "use_multimodal": {
-                "name": "Use Multimodal Input",
-                "value": False,
-                "component": "checkbox",
-            },
+            # "use_multimodal": {
+            #     "name": "Use Multimodal Input",
+            #     "value": False,
+            #     "component": "checkbox",
+            # },
             "system_prompt": {
                 "name": "System Prompt",
                 "value": "This is a question answering system",

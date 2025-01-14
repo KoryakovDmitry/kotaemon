@@ -201,7 +201,7 @@ class ChatPage(BasePage):
                         open=False,
                     ):
                         with gr.Row(elem_id="quick-setting-labels"):
-                            gr.HTML("Reasoning method")
+                            gr.HTML("Reasoning method", visible=False)
                             gr.HTML("Model")
                             gr.HTML("Language")
                             gr.HTML("Suggestion")
@@ -217,6 +217,7 @@ class ChatPage(BasePage):
                                 value=DEFAULT_SETTING,
                                 container=False,
                                 show_label=False,
+                                visible=False
                             )
                             self.model_type = gr.Dropdown(
                                 choices=self._app.default_settings.reasoning.options[
@@ -672,28 +673,28 @@ class ChatPage(BasePage):
         file_names, chat_input_text = get_file_names_regex(chat_input_text)
 
         # check if web search command is in file_names
-        if WEB_SEARCH_COMMAND in file_names:
-            used_command = WEB_SEARCH_COMMAND
+        # if WEB_SEARCH_COMMAND in file_names:
+        #     used_command = WEB_SEARCH_COMMAND
 
         # get all urls in input_str
-        urls, chat_input_text = get_urls(chat_input_text)
+        # urls, chat_input_text = get_urls(chat_input_text)
 
-        if urls and self.first_indexing_url_fn:
-            print("Detected URLs", urls)
-            file_ids = self.first_indexing_url_fn(
-                "\n".join(urls),
-                True,
-                settings,
-                user_id,
-            )
-        elif file_names:
+        # if urls and self.first_indexing_url_fn:
+        #     print("Detected URLs", urls)
+        #     file_ids = self.first_indexing_url_fn(
+        #         "\n".join(urls),
+        #         True,
+        #         settings,
+        #         user_id,
+        #     )
+        if file_names:
             for file_name in file_names:
                 file_id = first_selector_choices_map.get(file_name)
                 if file_id:
                     file_ids.append(file_id)
 
         # add new file ids to the first selector choices
-        first_selector_choices.extend(zip(urls, file_ids))
+        # first_selector_choices.extend(zip(urls, file_ids))
 
         # if file_ids is not empty and chat_input_text is empty
         # set the input to summary
@@ -962,12 +963,13 @@ class ChatPage(BasePage):
         retrievers = []
 
         if command_state == WEB_SEARCH_COMMAND:
-            # set retriever for web search
-            if not WebSearch:
-                raise ValueError("Web search back-end is not available.")
-
-            web_search = WebSearch()
-            retrievers.append(web_search)
+            pass
+            # # set retriever for web search
+            # if not WebSearch:
+            #     raise ValueError("Web search back-end is not available.")
+            #
+            # web_search = WebSearch()
+            # retrievers.append(web_search)
         else:
             for index in self._app.index_manager.indices:
                 index_selected = []
