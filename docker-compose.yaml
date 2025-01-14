@@ -45,6 +45,8 @@ services:
       - LOCAL_MODEL=${LOCAL_MODEL:-EuroLLM-9B-Instruct}
       - KH_DEMO_MODE=${KH_DEMO_MODE:-false}
       - KH_OLLAMA_URL=${KH_OLLAMA_URL:-http://host.docker.internal:11434/v1/}
+      - UNSTRUCTURED_URL=http://unstructured-api:8000
+      - TEI_RERANKING=http://text-embeddings-rerank:80
     ports:
       - '6574:6574'
     volumes:
