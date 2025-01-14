@@ -14,7 +14,7 @@ services:
     volumes:
       - ./models:/models  # Mount the directory with the trained model
     tty: true
-#    entrypoint: [ "/bin/sh", "/models/run_ollama.sh" ] # Loading the finetuned Mistral with the GGUF file
+    entrypoint: [ "/bin/sh", "/models/run_ollama.sh" ] # Loading the finetuned Mistral with the GGUF file
     runtime: nvidia
   text-embeddings-rerank:
     image: ghcr.io/huggingface/text-embeddings-inference:1.6
