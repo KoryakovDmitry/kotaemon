@@ -9,7 +9,7 @@ services:
       - "8111:80"
     volumes:
       - ./ktem_app_data_text_embeddings_rerank:/data
-    command: --model-id BAAI/bge-reranker-large
+    command: --model-id BAAI/bge-reranker-v2-gemma
     environment:
       - NVIDIA_VISIBLE_DEVICES=all
       - TZ=${TZ:-Europe/Luxembourg}
