@@ -1,21 +1,21 @@
 version: '3.7'
 
 services:
-  ollama: # New service for running the Dockerfile in /ollama
-    image: ollama/ollama:0.5.5
-    pull_policy: always
-    container_name: ollama
-    networks:
-      - overlay
-    environment:
-      - NVIDIA_VISIBLE_DEVICES=all
-    ports:
-      - '11435:11434' # will be accessible in http://localhost:11435
-    volumes:
-      - ./models:/models  # Mount the directory with the trained model
-    tty: true
-    entrypoint: [ "/bin/sh", "/models/run_ollama.sh" ] # Loading the finetuned Mistral with the GGUF file
-    runtime: nvidia
+#  ollama: # New service for running the Dockerfile in /ollama
+#    image: ollama/ollama:0.5.5
+#    pull_policy: always
+#    container_name: ollama
+#    networks:
+#      - overlay
+#    environment:
+#      - NVIDIA_VISIBLE_DEVICES=all
+#    ports:
+#      - '11435:11434' # will be accessible in http://localhost:11435
+#    volumes:
+#      - ./models:/models  # Mount the directory with the trained model
+#    tty: true
+#    entrypoint: [ "/bin/sh", "/models/run_ollama.sh" ] # Loading the finetuned Mistral with the GGUF file
+#    runtime: nvidia
   text-embeddings-rerank:
     image: ghcr.io/huggingface/text-embeddings-inference:1.6
     restart: always
@@ -73,6 +73,8 @@ services:
       - '6574:6574'
     volumes:
       - ./ktem_app_data:/app/ktem_app_data
+    extra_hosts:
+      - host.docker.internal:host-gateway
 networks:
   overlay:
     driver: "bridge"
