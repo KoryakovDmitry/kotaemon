@@ -45,9 +45,9 @@ services:
       - LOCAL_MODEL=${LOCAL_MODEL:-EuroLLM-9B-Instruct}
       - KH_DEMO_MODE=${KH_DEMO_MODE:-false}
       - KH_OLLAMA_URL=${KH_OLLAMA_URL:-http://host.docker.internal:11434/v1/}
-      - KH_APP_NAME={KH_APP_NAME:-Web-rag}
-      - KH_APP_VERSION={KH_APP_VERSION:-0.0.4}
-      - LOCAL_MODEL_EMBEDDINGS={LOCAL_MODEL_EMBEDDINGS:-bge-m3}
+      - KH_APP_NAME=${KH_APP_NAME:-Web-rag}
+      - KH_APP_VERSION=${KH_APP_VERSION:-0.0.4}
+      - LOCAL_MODEL_EMBEDDINGS=${LOCAL_MODEL_EMBEDDINGS:-bge-m3}
       - UNSTRUCTURED_URL=http://unstructured-api:8000
       - TEI_RERANKING=http://text-embeddings-rerank:80
       - KH_FEATURE_USER_MANAGEMENT=true
