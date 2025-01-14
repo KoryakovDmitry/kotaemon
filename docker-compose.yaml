@@ -1,6 +1,28 @@
 version: '3.7'
 
 services:
+  text-embeddings-rerank:
+    image: ghcr.io/huggingface/text-embeddings-inference:1.6
+    restart: always
+    runtime: nvidia
+    ports:
+      - "8111:80"
+    volumes:
+      - ./ktem_app_data_text_embeddings_rerank:/data
+    command: --model-id BAAI/bge-reranker-large
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - TZ=${TZ:-Europe/Luxembourg}
+  unstructured-api:
+    image: downloads.unstructured.io/unstructured-io/unstructured-api:0.0.9
+    restart: always
+    environment:
+      - TZ=${TZ:-Europe/Luxembourg}
+      - PORT=${PORT:-8000}
+    ports:
+      - '8000:8000'
+    networks:
+      - overlay
   web-rag:
     restart: always
     build:
