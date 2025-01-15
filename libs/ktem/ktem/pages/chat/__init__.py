@@ -263,6 +263,7 @@ class ChatPage(BasePage):
                             self.use_mindmap = gr.State(value=DEFAULT_SETTING)
                             self.use_mindmap_check = gr.Checkbox(
                                 label="Mindmap (default)",
+                                value=True,
                                 container=False,
                                 elem_id="use-mindmap-checkbox",
                             )
