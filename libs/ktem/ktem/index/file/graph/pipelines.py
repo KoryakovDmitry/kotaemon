@@ -53,7 +53,8 @@ GRAPHRAG_KEY_MISSING_MESSAGE = (
 
 
 def check_graphrag_api_key():
-    return len(os.getenv("GRAPHRAG_API_KEY", "")) > 0
+    # return len(os.getenv("GRAPHRAG_API_KEY", "")) > 0
+    return True
 
 
 def prepare_graph_index_path(graph_id: str):
