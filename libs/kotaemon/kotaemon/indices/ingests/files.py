@@ -14,7 +14,7 @@ from kotaemon.loaders import (
     # AdobeReader,
     # AzureAIDocumentIntelligenceLoader,
     DirectoryReader,
-    # DoclingReader,
+    DoclingReader,
     HtmlReader,
     # MathpixPDFReader,
     MhtmlReader,
@@ -34,7 +34,7 @@ unstructured = UnstructuredReader(url=os.getenv("UNSTRUCTURED_URL", "http://loca
 #     credential=str(config("AZURE_DI_CREDENTIAL", default="")),
 #     cache_dir=getattr(flowsettings, "KH_MARKDOWN_OUTPUT_DIR", None),
 # )
-# docling_reader = DoclingReader()
+docling_reader = DoclingReader()
 # adobe_reader.vlm_endpoint = (
 #     azure_reader.vlm_endpoint
 # ) = docling_reader.vlm_endpoint = getattr(flowsettings, "KH_VLM_ENDPOINT", "")

@@ -39,7 +39,7 @@ from kotaemon.indices.ingests.files import (
     KH_DEFAULT_FILE_EXTRACTORS,
     # adobe_reader,
     # azure_reader,
-    # docling_reader,
+    docling_reader,
     unstructured,
     # web_reader,
 )
@@ -679,7 +679,7 @@ class IndexDocumentPipeline(BaseFileIndexIndexing):
         #     readers[".pdf"] = azure_reader
         # elif self.reader_mode == "docling":
         #     readers[".pdf"] = docling_reader
-
+        readers[".pdf"] = docling_reader
         dev_readers, _, _ = dev_settings()
         readers.update(dev_readers)
 
