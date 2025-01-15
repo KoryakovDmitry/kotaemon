@@ -265,7 +265,7 @@ class DocumentRetrievalPipeline(BaseFileIndexRetriever):
             "use_reranking": {
                 "name": "Use reranking",
                 "value": False,
-                "value": True,
+                # "value": True,
                 "choices": [True, False],
                 "component": "checkbox",
             },
