@@ -350,8 +350,8 @@ KH_INDICES = [
                 ".pptx, .csv, .html, .mhtml, .txt, .md, .zip"
             ),
             "private": True,
-            "chunk_size": 200,
-            "chunk_overlap": 20,
+            "chunk_size": 400,
+            "chunk_overlap": 100,
         },
         "index_type": "ktem.index.file.FileIndex",
     },
