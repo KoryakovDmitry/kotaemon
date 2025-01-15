@@ -94,7 +94,7 @@ class SettingsPage(BasePage):
                     break
 
         # render reasoning page if there are reasoning settings
-        self._render_reasoning_tab = False
+        self._render_reasoning_tab = True
         # if len(self._default_settings.reasoning.settings) > 1:
         #     self._render_reasoning_tab = True
         # else:
