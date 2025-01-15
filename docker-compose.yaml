@@ -60,7 +60,7 @@ services:
 #      - GRAPHRAG_LLM_MODEL=${GRAPHRAG_LLM_MODEL}
       - GRADIO_SERVER_NAME=${GRADIO_SERVER_PORT:-0.0.0.0}
       - GRADIO_SERVER_PORT=${GRADIO_SERVER_PORT:-6574}
-      - LOCAL_MODEL=${LOCAL_MODEL:-EuroLLM-9B-Instruct}
+      - LOCAL_MODEL=${LOCAL_MODEL:-DiiKorr/EuroLLM-9B-Instruct}
       - KH_DEMO_MODE=${KH_DEMO_MODE:-false}
       - KH_OLLAMA_URL=${KH_OLLAMA_URL:-http://ollama:11434/v1/}
       - KH_APP_NAME=${KH_APP_NAME:-Web-rag}
