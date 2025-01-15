@@ -1,5 +1,5 @@
 from dotenv import load_dotenv
-loaded = load_dotenv("env")
+loaded = load_dotenv(".env")
 print(f".env is loaded?: {loaded}")
 
 
