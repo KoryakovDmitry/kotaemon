@@ -1,3 +1,8 @@
+from dotenv import load_dotenv
+loaded = load_dotenv("env")
+print(f".env is loaded?: {loaded}")
+
+
 import os
 
 from theflow.settings import settings as flowsettings
