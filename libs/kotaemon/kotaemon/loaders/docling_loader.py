@@ -44,6 +44,8 @@ class DoclingReader(BaseReader):
     @Param.auto(cache=True)
     def converter_(self):
         try:
+            import torch
+            torch.compiler.is_compiling()
             from docling.document_converter import DocumentConverter
         except ImportError:
             raise ImportError("Please install docling: 'pip install docling'")
