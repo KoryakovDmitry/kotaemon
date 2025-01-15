@@ -13,8 +13,7 @@ services:
       - '11435:11434' # will be accessible in http://localhost:11435
     volumes:
       - ./models:/models  # Mount the directory with the trained model
-      - ./.ollama/id_ed25519:/root/.ollama/id_ed25519
-      - ./.ollama/id_ed25519.pub:/root/.ollama/id_ed25519.pub
+      - ./.ollama:/root/.ollama
     tty: true
     entrypoint: [ "/bin/sh", "/models/run_ollama.sh" ] # Loading the finetuned Mistral with the GGUF file
     runtime: nvidia
