@@ -310,11 +310,13 @@ SETTINGS_REASONING = {
     },
 }
 
-USE_NANO_GRAPHRAG = config("USE_NANO_GRAPHRAG", default=True, cast=bool)
-USE_LIGHTRAG = config("USE_LIGHTRAG", default=True, cast=bool)
+# USE_NANO_GRAPHRAG = config("USE_NANO_GRAPHRAG", default=True, cast=bool)
+# USE_LIGHTRAG = config("USE_LIGHTRAG", default=True, cast=bool)
+USE_NANO_GRAPHRAG = False
+USE_LIGHTRAG = False
 
-GRAPHRAG_INDEX_TYPES = ["ktem.index.file.graph.GraphRAGIndex"]
-# GRAPHRAG_INDEX_TYPES = []
+# GRAPHRAG_INDEX_TYPES = ["ktem.index.file.graph.GraphRAGIndex"]
+GRAPHRAG_INDEX_TYPES = []
 
 if USE_NANO_GRAPHRAG:
     GRAPHRAG_INDEX_TYPES.append("ktem.index.file.graph.NanoGraphRAGIndex")
