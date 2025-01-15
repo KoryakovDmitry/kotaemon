@@ -105,5 +105,7 @@ RUN python -c "from unstructured.nlp.tokenize import _download_nltk_packages_if_
 
 RUN pip install graphrag==0.3.6
 RUN pip install future==1.0.0
+RUN pip install nano-graphrag==0.0.8.2
+RUN pip uninstall hnswlib chroma-hnswlib -y && pip install chroma-hnswlib
 
 CMD ["python", "app.py"]
