@@ -13,6 +13,16 @@ class LCEmbeddingMixin:
 
     def __init__(self, **params):
         self._lc_class = self._get_lc_class()
+
+        if params.get("model_name", "") == 'nomic-embed-text-v2-moe':
+            params["model_kwargs"] = {
+                'device': 'cuda',
+                'trust_remote_code': True
+            }
+            params["encode_kwargs"] = {'normalize_embeddings': True}
+            params["query_instruction"] = "search_query:"
+            params["embed_instruction"] = "search_document:"
+
         self._obj = self._lc_class(**params)
         self._kwargs: dict = params
 
